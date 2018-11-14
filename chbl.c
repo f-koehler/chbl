@@ -12,9 +12,13 @@ enum OP { OP_ADD = 0, OP_SUB, OP_SET };
 
 enum UNIT { UNIT_PERCENT = 0, UNIT_ABS };
 
+void usage() {
+  fprintf(stderr, "Usage: chbl backlight_name [+|-]number[%%]\n");
+}
+
 int main(int argc, char **argv) {
     if (argc != 3) {
-        fprintf(stderr, "Usage: chbl NAME OPERATION\n");
+        usage();
         exit(EXIT_FAILURE);
     }
 
@@ -34,7 +38,8 @@ int main(int argc, char **argv) {
         strcpy(remaining_op, argv[2]);
     } else {
         fprintf(stderr,
-                "The operation string must start with +, -, or a number!\n");
+                "The operation string must start with +, -, or a number!\n\n");
+        usage();
         exit(EXIT_FAILURE);
     }
 
@@ -45,17 +50,20 @@ int main(int argc, char **argv) {
     if (remaining_op[len_remaining_op - 1] == '%') {
         unit = UNIT_PERCENT;
         if (sscanf(remaining_op, "%lf%%", &value_percent) != 1) {
-            fprintf(stderr, "Failed to extract value from operation string!\n");
+            fprintf(stderr, "Failed to extract value from operation string!\n\n");
+            usage();
             exit(EXIT_FAILURE);
         }
     } else if (isdigit(remaining_op[len_remaining_op - 1])) {
         unit = UNIT_ABS;
         if (sscanf(remaining_op, "%d", &value_abs) != 1) {
-            fprintf(stderr, "Failed to extract value from operation string!\n");
+            fprintf(stderr, "Failed to extract value from operation string!\n\n");
+            usage();
             exit(EXIT_FAILURE);
         }
     } else {
-        fprintf(stderr, "The operation string must end with %% or a number!\n");
+        fprintf(stderr, "The operation string must end with %% or a number!\n\n");
+        usage();
         exit(EXIT_FAILURE);
     }
 
