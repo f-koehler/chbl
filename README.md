@@ -1,5 +1,7 @@
 chbl
 ====
+[![Build Status](https://travis-ci.org/f-koehler/chbl.svg?branch=master)](https://travis-ci.org/f-koehler/chbl)
+
 Change the brightness of your screen backlight.
 
 The target brightness can be specified using relative values
