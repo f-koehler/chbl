@@ -8,3 +8,4 @@ add_executable(chbl chbl.c)
 target_link_libraries(chbl m)
 
 install(TARGETS chbl RUNTIME DESTINATION bin)
+install(FILES chbl.1 DESTINATION ${CMAKE_INSTALL_PREFIX}/share/man/man1)

@@ -1,0 +1,18 @@
+.TH CHBL 1
+.SH NAME
+chbl \- change the backlight brightness of the screen
+.SH SYNOPSIS
+.B chbl
+.IR backlight_name
+.IR operation
+.SH DESCRIPTION
+.B chbl
+uses the files in /sys/class/backlight to change the screen brightness
+
+.IR operation
+determines what
+.B chbl
+will do.
+The operation is a number, that might be prefixed by + or minus and might be followed by %.
+If a prefix is given, the current brightness is increased/decreased by the specified amount, otherwise it will be set to the given value.
+If the suffix % is specified, the change is percental.
